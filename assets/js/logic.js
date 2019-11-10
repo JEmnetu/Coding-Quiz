@@ -7,6 +7,9 @@ var choicesEl = document.getElementById('choices');
 var sfxCorrect = new Audio("assets/sfx/correct.wav");
 var sfxIncorrect = new Audio("assets/sfx/incorrect.wav");
 var currentQuestionIndex = 0;
+var timeEl = document.getElementById('time');
+var time = questions.length * 15;
+var timer;
 
 
 startButton.addEventListener('click', setQuestion
@@ -25,6 +28,9 @@ startButton.addEventListener('click', setQuestion
 function setQuestion() {
     var currentQuestion = questions[currentQuestionIndex];
     var titleEl = document.getElementById('question');
+    timeEl.textContent = time;
+    timer = setInterval(clockTick, 1000);
+
 
     startDiv.setAttribute('class', 'hide');
     titleEl.textContent = currentQuestion.title;
@@ -48,6 +54,7 @@ function questionClick() {
     if (
         this.value !== questions[currentQuestionIndex].answer
     ) {
+        time -= 15;
         sfxIncorrect.play();
         alert('Wrong Answer!');
     } else {
@@ -63,6 +70,14 @@ function questionClick() {
         setQuestion();
     }
 
+}
+
+function clockTick() {
+    time--;
+    timeEl.textContent = time;
+    if (time <= 0) {
+        quizEnd();
+    }
 }
 
 function quizEnd() {
