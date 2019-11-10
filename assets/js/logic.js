@@ -3,7 +3,8 @@ var startDiv = document.getElementById('starting-page');
 var startButton = document.getElementById('start');
 var questionEl = document.getElementById('question');
 var choicesEl = document.getElementById('choices');
-
+var sfxCorrect = new Audio("assets/sfx/correct.wav");
+var sfxIncorrect = new Audio("assets/sfx/incorrect.wav");
 var currentQuestionIndex = 0;
 
 
@@ -23,7 +24,7 @@ startButton.addEventListener('click', setQuestion
 function setQuestion() {
     var currentQuestion = questions[currentQuestionIndex];
     var titleEl = document.getElementById('question');
-    alert("Start!");
+
     startDiv.setAttribute('class', 'hide');
     titleEl.textContent = currentQuestion.title;
 
@@ -36,6 +37,29 @@ function setQuestion() {
 
         choiceNode.textContent = i + 1 + ". " + choice;
 
+        choiceNode.onclick = questionClick;
+
         choicesEl.appendChild(choiceNode);
     })
+}
+
+function questionClick() {
+    if (
+        this.value !== questions[currentQuestionIndex].answer
+    ) {
+        sfxIncorrect.play();
+        alert('Wrong Answer!');
+    } else {
+        sfxCorrect.play();
+        alert('Correct!');
+    }
+
+    currentQuestionIndex++;
+
+    if (currentQuestionIndex === questions.length) {
+        alert('Quiz is over!');
+    } else {
+        setQuestion();
+    }
+
 }

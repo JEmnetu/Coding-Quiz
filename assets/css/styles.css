@@ -5,9 +5,10 @@
 button {
     background-color: red;
     color: white;
-    height: 2.3em;
-    width: 7em;
+    height: 4em;
+    width: 9em;
     border-radius: 8px;
+    margin-left: 25px;
 }
 
 button:hover {
@@ -23,14 +24,8 @@ button:hover {
     float: right;
 }
 
-.score {
-    widows: 20px;
-}
+.score {}
 
 #choices {
-    background-color: green;
-}
-
-#questions {
-    background-color: pink;
+    margin-top: 100px;
 }
