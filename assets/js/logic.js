@@ -2,6 +2,7 @@
 var startDiv = document.getElementById('starting-page');
 var startButton = document.getElementById('start');
 var questionEl = document.getElementById('question');
+var questionsDiv = document.getElementById('questions');
 var choicesEl = document.getElementById('choices');
 var sfxCorrect = new Audio("assets/sfx/correct.wav");
 var sfxIncorrect = new Audio("assets/sfx/incorrect.wav");
@@ -57,9 +58,16 @@ function questionClick() {
     currentQuestionIndex++;
 
     if (currentQuestionIndex === questions.length) {
-        alert('Quiz is over!');
+        quizEnd();
     } else {
         setQuestion();
     }
 
+}
+
+function quizEnd() {
+    var endScreen = document.getElementById('end-screen');
+    endScreen.removeAttribute('class');
+
+    questionsDiv.setAttribute('class', 'hide');
 }
