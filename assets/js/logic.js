@@ -77,6 +77,8 @@ function clockTick() {
     timeEl.textContent = time;
     if (time <= 0) {
         quizEnd();
+
+
     }
 }
 
@@ -85,4 +87,7 @@ function quizEnd() {
     endScreen.removeAttribute('class');
 
     questionsDiv.setAttribute('class', 'hide');
+
+    time = 0;
+
 }
