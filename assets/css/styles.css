@@ -26,3 +26,11 @@ button:hover {
 .score {
     widows: 20px;
 }
+
+#choices {
+    background-color: green;
+}
+
+#questions {
+    background-color: pink;
+}
