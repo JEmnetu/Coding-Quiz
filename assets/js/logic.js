@@ -9,30 +9,38 @@ var sfxIncorrect = new Audio("assets/sfx/incorrect.wav");
 var currentQuestionIndex = 0;
 var timeEl = document.getElementById('time');
 var time = questions.length * 15;
+var scoreEl = document.getElementById('final-score');
+var submitBtn = document.getElementById('submit');
+var nameEl = document.getElementById('userN');
+
+
 var timer;
 
 
-startButton.addEventListener('click', setQuestion
 
-    // questionEl.innerText = questions[0].title;
-    // choicesDiv.innerText = questions[0].choices;
 
-    // for (var i = 0; i < 4; i++) {
-    //     var button = document.createElement('button');
-    //     button.setAttribute('value', 'button');
-    //     choicesEl.append(button);
-    // }
-
-)
+// function tick() {
+//     
+//     if (time == 0) {
+//         return false;
+//     }
+// }
+function begin() {
+    timer = setInterval(clockTick, 1000);
+    timeEl.textContent = time;
+    startDiv.setAttribute('class', 'hide');
+    setQuestion();
+}
 
 function setQuestion() {
+
     var currentQuestion = questions[currentQuestionIndex];
     var titleEl = document.getElementById('question');
-    timeEl.textContent = time;
-    timer = setInterval(clockTick, 1000);
 
 
-    startDiv.setAttribute('class', 'hide');
+
+
+
     titleEl.textContent = currentQuestion.title;
 
     choicesEl.innerHTML = "";
@@ -84,10 +92,48 @@ function clockTick() {
 
 function quizEnd() {
     var endScreen = document.getElementById('end-screen');
+    clearInterval(timer);
     endScreen.removeAttribute('class');
 
     questionsDiv.setAttribute('class', 'hide');
+    scoreEl.textContent = time;
+    console.log(time);
 
-    time = 0;
+    timeEl.textContent = 0;
 
 }
+
+function saveScore() {
+
+    var name = nameEl.value;
+    if (name !== "") {
+
+        var highScore = JSON.parse(window.localStorage.getItem('highScore')) || [];
+
+        var myScore = {
+            score: time,
+            userName: name
+        };
+
+        highScore.push(myScore);
+        window.localStorage.setItem('highscore', JSON.stringify(highScore));
+
+        window.location.href = 'highscores.html';
+    }
+}
+startButton.addEventListener('click', begin
+
+
+
+
+    // questionEl.innerText = questions[0].title;
+    // choicesDiv.innerText = questions[0].choices;
+
+    // for (var i = 0; i < 4; i++) {
+    //     var button = document.createElement('button');
+    //     button.setAttribute('value', 'button');
+    //     choicesEl.append(button);
+    // }
+
+)
+submitBtn.addEventListener('click', saveScore)
