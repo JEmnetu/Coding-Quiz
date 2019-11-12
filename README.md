@@ -10,10 +10,10 @@
 ## Usage
 
 
-[Home page](./assets/images/Homepage.png)
-[Questions](./assets/images/Questions.png)
-[Scores](./assets/images/Scores.png)
-[end page](./assets/images/End.png)
+![Home page](./assets/images/Homepage.png)
+![Questions](./assets/images/Questions.png)
+![Scores](./assets/images/Scores.png)
+![end page](./assets/images/End.png)
 
 
 ## Credits
